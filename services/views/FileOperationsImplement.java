@@ -23,7 +23,7 @@ public class FileOperationsImplement implements FileOperations {
         }
     }
 
-    @SuppressWarnings("unchecked") // auto fixed
+    @SuppressWarnings("unchecked")
     @Override
     public List<Note> loadNotes(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {

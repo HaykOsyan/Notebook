@@ -26,7 +26,7 @@ public class NotebookController {
     }
 
     public boolean saveNotesToFile(String filename) {
-        List<Note> noteList = new ArrayList<>(notebook.getAllNotes().values()); // Convert Map to List
+        List<Note> noteList = new ArrayList<>(notebook.getAllNotes().values());
         return fileOperations.saveNotes(noteList, filename);
     }
 

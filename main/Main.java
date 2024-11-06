@@ -1,5 +1,6 @@
 package notebook_atestat.main;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import notebook_atestat.models.Notebook;
@@ -26,7 +27,7 @@ public class Main {
             System.out.println("\nChoose an option:");
             System.out.println("1. Create a new note");
             System.out.println("2. Display all notes");
-            // System.out.println("2.2. Display notes by Date");
+            System.out.println("22. Display notes by Date");
             System.out.println("3. Save notes to file");
             System.out.println("4. Load notes from file");
             System.out.println("5. Exit");
@@ -42,10 +43,18 @@ public class Main {
                     System.out.println("\nAll notes:");
                     notebook.getAllNotes().values().forEach(System.out::println);
                     break;
-                // case 22:
-                //     System.out.println("\nAll notes:");
-                //     notebook.getAllNotes().values().forEach(System.out::println);
-                //     break;
+                case 22:
+                    System.out.println("Enter year (e.g., 2024): ");
+                    int year = scanner.nextInt();
+
+                    System.out.println("Enter month (1-12): ");
+                    int month = scanner.nextInt();
+
+                    System.out.println("Enter day (1-31): ");
+                    int day = scanner.nextInt();
+                    LocalDate date = LocalDate.of(year, month, day);
+                    notebook.getNotesByDate(date).forEach(System.out::println);
+                    break;
                 case 3:
                     System.out.print("Enter filename to save notes: ");
                     String saveFilename = scanner.nextLine();

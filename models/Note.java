@@ -1,9 +1,10 @@
 package notebook_atestat.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Note {
+public class Note implements Serializable{
     private static int lastId = 0;
     private LocalDate date;
     private int id;
