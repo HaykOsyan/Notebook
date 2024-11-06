@@ -53,7 +53,7 @@ public class Main {
                     System.out.println("Enter day (1-31): ");
                     int day = scanner.nextInt();
                     LocalDate date = LocalDate.of(year, month, day);
-                    notebook.getNotesByDate(date).forEach(System.out::println);
+                    notebookController.getNotesByDate(date).forEach(System.out::println);
                     break;
                 case 3:
                     System.out.print("Enter filename to save notes: ");

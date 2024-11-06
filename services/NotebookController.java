@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import notebook_atestat.models.Note;
 import notebook_atestat.models.Notebook;
@@ -22,7 +23,9 @@ public class NotebookController {
     }
 
     public List<Note> getNotesByDate(LocalDate date) {
-        return notebook.getNotesByDate(date);
+        return notebook.getAllNotes().values().stream()
+                .filter(note -> note.getDate().equals(date))
+                .collect(Collectors.toList());
     }
 
     public boolean saveNotesToFile(String filename) {
