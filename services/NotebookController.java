@@ -3,6 +3,7 @@ package notebook_atestat.services;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,40 @@ public class NotebookController {
                 .filter(note -> note.getDate().equals(date))
                 .collect(Collectors.toList());
     }
+
+    public List<Note> getNotesByWeek(LocalDate startOfWeek) {
+        LocalDate endOfWeek = startOfWeek.plusDays(6);
+        return notebook.getAllNotes().values().stream()
+                .filter(note -> !note.getDate().isBefore(startOfWeek) && !note.getDate().isAfter(endOfWeek))
+                .collect(Collectors.toList());
+    }
+
+    public List<Note> sortByDate() {
+        return notebook.getAllNotes().values().stream()
+                .sorted(Comparator.comparing(Note::getDate))
+                .collect(Collectors.toList());
+    }
+
+    public List<Note> sortByTitle() {
+        return notebook.getAllNotes().values().stream()
+                .sorted(Comparator.comparing(note -> note.getTitle().toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    // public List<Note> sortBy(String option) {
+    //     switch (option) {
+    //         case "title":
+    //             return notebook.getAllNotes().values().stream()
+    //                     .sorted(Comparator.comparing(Note::getTitle))
+    //                     .collect(Collectors.toList());
+    //         case "date":
+    //             return notebook.getAllNotes().values().stream()
+    //                     .sorted(Comparator.comparing(Note::getDate))
+    //                     .collect(Collectors.toList());
+    //         default:
+    //             return null;
+    //     }
+    // }
 
     public boolean saveNotesToFile(String filename) {
         List<Note> noteList = new ArrayList<>(notebook.getAllNotes().values());

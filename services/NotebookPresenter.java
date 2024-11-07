@@ -45,4 +45,40 @@ public class NotebookPresenter {
             messageView.showErrorMessage("There are no such notes in this date");
         }
     }
+
+    public void getNotesByWeek(LocalDate startOfWeek) {
+        List<Note> success = notebookController.getNotesByWeek(startOfWeek);
+        if (!success.isEmpty()) {
+            messageView.showSuccessMessage("Here are notes for that date \n");
+            for (Note note : success) {
+                System.out.println(note);
+            }
+        } else {
+            messageView.showErrorMessage("There are no such notes in this week");
+        }
+    }
+
+    public void getSortedByTitle() {
+        List<Note> sorted = notebookController.sortByTitle();
+        if (!sorted.isEmpty()) {
+            messageView.showSuccessMessage("Here are sorted notes by title \n");
+            for (Note note : sorted) {
+                System.out.println(note);
+            }
+        } else {
+            messageView.showErrorMessage("Sorry something went wrong");
+        }
+    }
+
+    public void getSortedByDate() {
+        List<Note> sorted = notebookController.sortByDate();
+        if (!sorted.isEmpty()) {
+            messageView.showSuccessMessage("Here are sorted notes by date \n");
+            for (Note note : sorted) {
+                System.out.println(note);
+            }
+        } else {
+            messageView.showErrorMessage("Sorry something went wrong");
+        }
+    }
 }

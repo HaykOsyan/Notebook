@@ -28,6 +28,9 @@ public class Main {
             System.out.println("1. Create a new note");
             System.out.println("2. Display all notes");
             System.out.println("22. Display notes by Date");
+            System.out.println("23. Display notes by Week");
+            System.out.println("24. Sort notes by Title");
+            System.out.println("25. Sort notes by Date");
             System.out.println("3. Save notes to file");
             System.out.println("4. Load notes from file");
             System.out.println("5. Exit");
@@ -53,7 +56,25 @@ public class Main {
                     System.out.println("Enter day (1-31): ");
                     int day = scanner.nextInt();
                     LocalDate date = LocalDate.of(year, month, day);
-                    notebookController.getNotesByDate(date).forEach(System.out::println);
+                    notebookPresenter.getNotesByDate(date);
+                    break;
+                case 23:
+                    System.out.println("Enter year (e.g., 2024): ");
+                    year = scanner.nextInt();
+
+                    System.out.println("Enter month (1-12): ");
+                    month = scanner.nextInt();
+
+                    System.out.println("Enter day (1-31): ");
+                    day = scanner.nextInt();
+                    LocalDate startOfWeek = LocalDate.of(year, month, day);
+                    notebookPresenter.getNotesByWeek(startOfWeek);
+                    break;
+                case 24:
+                    notebookPresenter.getSortedByTitle();
+                    break;
+                case 25:
+                    notebookPresenter.getSortedByDate();
                     break;
                 case 3:
                     System.out.print("Enter filename to save notes: ");
